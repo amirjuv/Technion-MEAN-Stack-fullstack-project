@@ -1,0 +1,23 @@
+<div *ngIf="!isAddClicked">
+    <label>Posts - User {{user._id}}</label>
+    <input type="button" value="Add" (click)="add()">
+    <br/>
+    <div>
+        <div *ngFor="let post of user.posts">
+            <app-single-post [user]="user" [post]="post"></app-single-post>
+        </div>
+    </div>
+    <br/>
+</div>
+<div *ngIf="isAddClicked">
+    <form #f="ngForm" (submit)="addNewPost(f.valid)"> 
+        New Post - User {{user._id}}
+        <br/>
+        Title : <input required [(ngModel)]="addedTitle" type="text" name="title">
+        <br/>
+        Body : <input type="text" required [(ngModel)]="addedBody" name="body" value="{{addedBody}}">
+        <br/>
+        <input type="button" value="Cancel" (click)="cancel()">
+        <input type="submit" value="Add">
+    </form>
+</div>

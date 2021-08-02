@@ -1,0 +1,16 @@
+<form #f="ngForm" (submit)="update(f.valid)">
+    <div [style.border]="tasksCompleted()? '2px solid green' : '2px solid red'" [style.background-color]="isOrange? 'orange' : 'white'">
+        <label [routerLink]='["/user-detailed-info", user._id]' (click)="routeToUserExtraData()">ID: {{user._id}}</label> <br/>
+        <label>Name:</label> <input required [(ngModel)]="user.name" type="text" value="{{user.name}}" name="name"> <br/>
+        <label>Email:</label> <input required [(ngModel)]="user.email" type="text" value="{{user.email}}" name="email" ngModel [email]="true"> <br/>
+        <input (click)="otherDataClicked()" (mouseover)="otherDataHovered()" class="button-other-data" type="button" value="Other Data"> 
+        <br/>
+        <div [style.background-color]="'gray'" *ngIf="isOtherDataVisible">
+            <label>Street: </label><input [(ngModel)]="user.street" type="text" value="{{user.street}}" name="street"> <br/>
+            <label>City: </label> <input [(ngModel)]="user.city" type="text" value="{{user.city}}" name="city"> <br/>
+            <label>Zipcode: </label> <input [(ngModel)]="user.zipcode" type="text" value="{{user.zipcode}}" name="zipcode"> <br/>
+        </div>
+        <input class="button" type="submit" value="Update">
+        <input (click)="delete()" class="button" type="button" value="Delete">
+    </div>
+</form>

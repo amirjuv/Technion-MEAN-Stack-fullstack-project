@@ -1,0 +1,21 @@
+<div *ngIf="!isAddClicked">
+    <label>Todos - User {{user._id}}</label>
+    <input type="button" value="Add" (click)="add()">
+    <br/>
+    <div>
+        <div *ngFor="let task of user.tasks">
+            <app-single-task [user]="user" [task]="task" [isTaskCompleted]="task.completed ? true : false"></app-single-task>
+        </div>
+    </div>
+    <br/>
+</div>
+<div *ngIf="isAddClicked">
+    <form #f="ngForm" (submit)=addNewTask(f.valid)>
+            <label>New Todo - User {{user._id}}</label>
+            <br/>
+            <label>Title : </label><input required [(ngModel)]="addedTask" type="text" name="title">
+            <br/>
+            <input type="button" value="Cancel" (click)="cancel()">
+            <input type="submit" value="Add">
+    </form>
+</div>

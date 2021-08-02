@@ -1,0 +1,17 @@
+<label>Search</label>
+<input type="text" #searchVal (keyup)="search(searchVal.value)">
+<input type="button" value="Add"  [routerLink]='["/add"]'> 
+
+<div *ngIf="searched">
+    <div *ngFor="let user of filtered">
+        <app-card [user]="user" [isOrange]="fillWithOrangeColor(user._id)" (notify)="wasIdClicked($event)"></app-card>
+    </div>
+</div>
+
+<div *ngIf="!searched">
+    <div *ngFor="let user of users">
+        <app-card [user]="user" [isOrange]="fillWithOrangeColor(user._id)" (notify)="wasIdClicked($event)"></app-card>
+    </div>
+</div>
+
+<router-outlet></router-outlet>
